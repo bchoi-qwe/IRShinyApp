@@ -1,6 +1,5 @@
 library(readr)
 library(dplyr)
-library(lubridate)
 
 # Global Environment
 
@@ -1066,4 +1065,3 @@ BAA10Y <- fred_data %>%
 
 saveRDS(BAA10Y,  file.path(out_dir, "rates_BAA10Y.rds"))
 write_csv(BAA10Y, file.path(out_dir_raw, "rates_BAA10Y.csv"))
-
