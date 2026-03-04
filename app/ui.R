@@ -51,24 +51,10 @@ bs4DashBody(
                             bs4Card(
                                 title = "box 1", width = 6, solidHeader = TRUE, status = "primary",
                                 plotOutput("home_box1_plot", height = 250),
-                                dateRangeInput(
-                                    inputId = "home_box1_dates",
-                                    label = NULL,
-                                    start = Sys.Date() - 30,
-                                    end   = Sys.Date(),
-                                    format = "yyyy-mm-dd"
-                                )
                             ),
                             bs4Card(
                                 title = "box 2", width = 6, solidHeader = TRUE, status = "primary",
                                 plotOutput("home_box2_plot", height = 250),
-                                dateRangeInput(
-                                    inputId = "home_box2_dates",
-                                    label = NULL,
-                                    start = Sys.Date() - 30,
-                                    end   = Sys.Date(),
-                                    format = "yyyy-mm-dd"
-                            )
                         ),
                         
                         fluidRow(
@@ -120,24 +106,10 @@ bs4DashBody(
                             bs4Card(
                                 title = "box 1", width = 6, solidHeader = TRUE, status = "primary",
                                 plotOutput("rates_box1_plot", height = 250),
-                                dateRangeInput(
-                                    inputId = "rates_box1_dates",
-                                    label = NULL,
-                                    start = Sys.Date() - 30,
-                                    end   = Sys.Date(),
-                                    format = "yyyy-mm-dd"
-                                )
                             ),
                             bs4Card(
                                 title = "box 2", width = 6, solidHeader = TRUE, status = "primary",
                                 plotOutput("rates_box2_plot", height = 250),
-                                dateRangeInput(
-                                    inputId = "rates_box2_dates",
-                                    label = NULL,
-                                    start = Sys.Date() - 30,
-                                    end   = Sys.Date(),
-                                    format = "yyyy-mm-dd"
-                            )
                         ),
                         
                         fluidRow(
@@ -189,24 +161,10 @@ bs4DashBody(
                         bs4Card(
                             title = "box 1", width = 6, solidHeader = TRUE, status = "primary",
                             plotOutput("risk_box1_plot", height = 250),
-                            dateRangeInput(
-                                inputId = "risk_box1_dates",
-                                label = NULL,
-                                start = Sys.Date() - 30,
-                                end   = Sys.Date(),
-                                format = "yyyy-mm-dd"
-                            )
                         ),
                         bs4Card(
                             title = "box 2", width = 6, solidHeader = TRUE, status = "primary",
                             plotOutput("risk_box2_plot", height = 250),
-                            dateRangeInput(
-                                inputId = "risk_box2_dates",
-                                label = NULL,
-                                start = Sys.Date() - 30,
-                                end   = Sys.Date(),
-                                format = "yyyy-mm-dd"
-                            )
                         ),
                         
                         fluidRow(
@@ -258,24 +216,10 @@ bs4DashBody(
                         bs4Card(
                             title = "box 1", width = 6, solidHeader = TRUE, status = "primary",
                             plotOutput("portfolio_box1_plot", height = 250),
-                            dateRangeInput(
-                                inputId = "portfolio_box1_dates",
-                                label = NULL,
-                                start = Sys.Date() - 30,
-                                end   = Sys.Date(),
-                                format = "yyyy-mm-dd"
-                            )
                         ),
                         bs4Card(
                             title = "box 2", width = 6, solidHeader = TRUE, status = "primary",
                             plotOutput("portfolio_box2_plot", height = 250),
-                            dateRangeInput(
-                                inputId = "portfolio_box2_dates",
-                                label = NULL,
-                                start = Sys.Date() - 30,
-                                end   = Sys.Date(),
-                                format = "yyyy-mm-dd"
-                            )
                         ),
                         
                         fluidRow(
@@ -327,24 +271,10 @@ bs4DashBody(
                         bs4Card(
                             title = "box 1", width = 6, solidHeader = TRUE, status = "primary",
                             plotOutput("pnl_box1_plot", height = 250),
-                            dateRangeInput(
-                                inputId = "pnl_box1_dates",
-                                label = NULL,
-                                start = Sys.Date() - 30,
-                                end   = Sys.Date(),
-                                format = "yyyy-mm-dd"
-                            )
                         ),
                         bs4Card(
                             title = "box 2", width = 6, solidHeader = TRUE, status = "primary",
                             plotOutput("pnl_box2_plot", height = 250),
-                            dateRangeInput(
-                                inputId = "pnl_box2_dates",
-                                label = NULL,
-                                start = Sys.Date() - 30,
-                                end   = Sys.Date(),
-                                format = "yyyy-mm-dd"
-                            )
                         ),
                         
                         fluidRow(
@@ -396,24 +326,10 @@ bs4DashBody(
                         bs4Card(
                             title = "box 1", width = 6, solidHeader = TRUE, status = "primary",
                             plotOutput("other_box1_plot", height = 250),
-                            dateRangeInput(
-                                inputId = "other_box1_dates",
-                                label = NULL,
-                                start = Sys.Date() - 30,
-                                end   = Sys.Date(),
-                                format = "yyyy-mm-dd"
-                            )
                         ),
                         bs4Card(
                             title = "box 2", width = 6, solidHeader = TRUE, status = "primary",
                             plotOutput("other_box2_plot", height = 250),
-                            dateRangeInput(
-                                inputId = "other_box2_dates",
-                                label = NULL,
-                                start = Sys.Date() - 30,
-                                end   = Sys.Date(),
-                                format = "yyyy-mm-dd"
-                            )
                         ),
                         
                         fluidRow(
