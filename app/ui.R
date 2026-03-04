@@ -47,6 +47,17 @@ bs4DashBody(
                         title = "Tab 1",
                         active = TRUE,
                         
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("home_tab1_input1")),
+                                column(3, selectInput("home_tab1_input2")),
+                                column(3, selectInput("home_tab1_input3")),
+                                column(3, selectInput("home_tab1_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(
                                 title = "box 1", width = 6, solidHeader = TRUE, status = "primary",
@@ -73,6 +84,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 2",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("home_tab2_input1")),
+                                column(3, selectInput("home_tab2_input2")),
+                                column(3, selectInput("home_tab2_input3")),
+                                column(3, selectInput("home_tab2_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 2 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
@@ -82,6 +106,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 3",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("home_tab3_input1")),
+                                column(3, selectInput("home_tab3_input2")),
+                                column(3, selectInput("home_tab3_input3")),
+                                column(3, selectInput("home_tab3_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 3 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
@@ -101,6 +138,17 @@ bs4DashBody(
                     bs4TabPanel(
                         title = "Tab 1",
                         active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("rates_tab1_input1")),
+                                column(3, selectInput("rates_tab1_input2")),
+                                column(3, selectInput("rates_tab1_input3")),
+                                column(3, selectInput("rates_tab1_input4")),
+                            )
+                        ),
                         
                         fluidRow(
                             bs4Card(
@@ -128,6 +176,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 2",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("rates_tab2_input1")),
+                                column(3, selectInput("rates_tab2_input2")),
+                                column(3, selectInput("rates_tab2_input3")),
+                                column(3, selectInput("rates_tab2_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 2 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
@@ -137,6 +198,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 3",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("rates_tab3_input1")),
+                                column(3, selectInput("rates_tab3_input2")),
+                                column(3, selectInput("rates_tab3_input3")),
+                                column(3, selectInput("rates_tab3_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 3 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
@@ -156,6 +230,17 @@ bs4DashBody(
                 bs4TabPanel(
                     title = "Tab 1",
                     active = TRUE,
+                    
+                    bs4Card(
+                        title = "Inputs",
+                        width = 12,
+                        fluidRow(
+                            column(3, selectInput("risk_tab1_input1")),
+                            column(3, selectInput("risk_tab1_input2")),
+                            column(3, selectInput("risk_tab1_input3")),
+                            column(3, selectInput("risk_tab1_input4")),
+                        )
+                    ),
                     
                     fluidRow(
                         bs4Card(
@@ -183,6 +268,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 2",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("risk_tab2_input1")),
+                                column(3, selectInput("risk_tab2_input2")),
+                                column(3, selectInput("risk_tab2_input3")),
+                                column(3, selectInput("risk_tab2_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 2 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
@@ -192,6 +290,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 3",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("risk_tab3_input1")),
+                                column(3, selectInput("risk_tab3_input2")),
+                                column(3, selectInput("risk_tab3_input3")),
+                                column(3, selectInput("risk_tab3_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 3 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
@@ -211,6 +322,17 @@ bs4DashBody(
                 bs4TabPanel(
                     title = "Tab 1",
                     active = TRUE,
+                    
+                    bs4Card(
+                        title = "Inputs",
+                        width = 12,
+                        fluidRow(
+                            column(3, selectInput("portfolio_tab1_input1")),
+                            column(3, selectInput("portfolio_tab1_input2")),
+                            column(3, selectInput("portfolio_tab1_input3")),
+                            column(3, selectInput("portfolio_tab1_input4")),
+                        )
+                    ),
                     
                     fluidRow(
                         bs4Card(
@@ -238,6 +360,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 2",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("portfolio_tab2_input1")),
+                                column(3, selectInput("portfolio_tab2_input2")),
+                                column(3, selectInput("portfolio_tab2_input3")),
+                                column(3, selectInput("portfolio_tab2_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 2 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
@@ -247,6 +382,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 3",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("portfolio_tab3_input1")),
+                                column(3, selectInput("portfolio_tab3_input2")),
+                                column(3, selectInput("portfolio_tab3_input3")),
+                                column(3, selectInput("portfolio_tab3_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 3 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
@@ -266,6 +414,17 @@ bs4DashBody(
                 bs4TabPanel(
                     title = "Tab 1",
                     active = TRUE,
+                    
+                    bs4Card(
+                        title = "Inputs",
+                        width = 12,
+                        fluidRow(
+                            column(3, selectInput("pnl_tab1_input1")),
+                            column(3, selectInput("pnl_tab1_input2")),
+                            column(3, selectInput("pnl_tab1_input3")),
+                            column(3, selectInput("pnl_tab1_input4")),
+                        )
+                    ),
                     
                     fluidRow(
                         bs4Card(
@@ -293,6 +452,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 2",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("pnl_tab2_input1")),
+                                column(3, selectInput("pnl_tab2_input2")),
+                                column(3, selectInput("pnl_tab2_input3")),
+                                column(3, selectInput("pnl_tab2_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 2 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
@@ -302,6 +474,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 3",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("pnl_tab3_input1")),
+                                column(3, selectInput("pnl_tab3_input2")),
+                                column(3, selectInput("pnl_tab3_input3")),
+                                column(3, selectInput("pnl_tab3_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 3 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
@@ -321,6 +506,17 @@ bs4DashBody(
                 bs4TabPanel(
                     title = "Tab 1",
                     active = TRUE,
+                    
+                    bs4Card(
+                        title = "Inputs",
+                        width = 12,
+                        fluidRow(
+                            column(3, selectInput("other_tab1_input1")),
+                            column(3, selectInput("other_tab1_input2")),
+                            column(3, selectInput("other_tab1_input3")),
+                            column(3, selectInput("other_tab1_input4")),
+                        )
+                    ),
                     
                     fluidRow(
                         bs4Card(
@@ -348,6 +544,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 2",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("other_tab2_input1")),
+                                column(3, selectInput("other_tab2_input2")),
+                                column(3, selectInput("other_tab2_input3")),
+                                column(3, selectInput("other_tab2_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 2 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
@@ -357,6 +566,19 @@ bs4DashBody(
                     
                     bs4TabPanel(
                         title = "Tab 3",
+                        active = TRUE,
+                        
+                        bs4Card(
+                            title = "Inputs",
+                            width = 12,
+                            fluidRow(
+                                column(3, selectInput("other_tab3_input1")),
+                                column(3, selectInput("other_tab3_input2")),
+                                column(3, selectInput("other_tab3_input3")),
+                                column(3, selectInput("other_tab3_input4")),
+                            )
+                        ),
+                        
                         fluidRow(
                             bs4Card(title = "Tab 3 content", width = 12, solidHeader = TRUE, status = "primary",
                                 p("Placeholder")
