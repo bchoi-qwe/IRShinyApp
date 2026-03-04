@@ -10,7 +10,7 @@ ui <- bs4DashPage(
             selectInput(
                 "global_portfolio", label = NULL,
                 choices = c("All", "Book A", "Book B", "Book C"),
-                selected = "All",
+                selected = "All"
             ),
             dateRangeInput(
                 "global_dates", label = NULL,
@@ -590,4 +590,5 @@ bs4DashBody(
         )
     )
 )
+
 )

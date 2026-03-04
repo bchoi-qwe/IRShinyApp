@@ -137,7 +137,7 @@ price_bond <- function(coupon_rate, face_value, expiry_date, valuation_date, m=2
     
     zero_rate <- zero_curve %>% arrange(abs(T2M-schedule[i])) %>% 
       slice(1) %>%
-      dplyr::pull(zero_yields)
+      pull(zero_yields)
     
     #zero_rate <- zero_curve %>%
     #  dplyr::filter(round(zero_curve$T2M,4) == schedule[i]) %>%
