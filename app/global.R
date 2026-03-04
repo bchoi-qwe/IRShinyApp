@@ -5,24 +5,21 @@ library(plotly)
 
 fred_codes <- c("DGS1MO","DGS3MO", "DGS6MO", "DGS1", "DGS2","DGS3", "DGS5","DGS7","DGS10","DGS20","DGS30")
 
-rate_data <- tidyquant::tq_get(fred_codes, 
-                               get = "economic.data",
-                               from = "1992-01-01") %>% 
-  dplyr::mutate(
-    T2M = dplyr::case_when(
+rate_data <- tq_get(fred_codes, 
+                    get = "economic.data", 
+                    from = "1992-01-01") %>% 
+  mutate(
+    T2M = case_when(
       grepl("MO", symbol) ~ as.numeric(str_extract(symbol, "\\d+"))/12,
       .default = as.numeric(str_extract(symbol, "\\d+"))),
     par_yield = price / 100) %>% 
-  dplyr:: select(-price) %>% 
-  tidyr::drop_na()
-
-
-
+  select(-price) %>% 
+  drop_na()
 
 interpolate_curve <- function(valuation_date) {
   current_curve <- rate_data %>% 
-    dplyr::filter(date == valuation_date) %>% 
-    dplyr::select(T2M, par_yield)
+    filter(date == valuation_date) %>% 
+    select(T2M, par_yield)
   
   T2M_interpolated <- seq(0.5, max(current_curve$T2M), by = 0.5)
   
@@ -34,11 +31,9 @@ interpolate_curve <- function(valuation_date) {
                                    par_yield = y_vals)
   
   return(interpolated_curve)
-  
 }
 
 #current_curve <- interpolate_curve("2026-02-06")
-
 
 bootstrap_curve <- function(fred_curve) {
   
@@ -88,27 +83,24 @@ bootstrap_curve <- function(fred_curve) {
     
     zero_curve <- data.frame(T2M, zero_yields)
     
-    
   }
+  
   zero_curve <- cbind(zero_curve, dates)
   return(zero_curve)
 }
 
 #zero_curve <- bootstrap_curve(current_curve)
 
-
 #combined_curve <- merge(current_curve, zero_curve, by = "T2M")
-
 
 # combined_curve_plot <- ggplot2::ggplot(combined_curve,
 #                         aes(x = T2M)) +
 #   geom_line(aes(y = par_yield)) +
 #   geom_line(aes(y = zero_yields))
-# 
+
 # combined_curve_plot # This doesn't seem correct as zero rates should not be lower then par rates
 
-
-price_bond <- function(coupon_rate, face_value, expiry_date, valuation_date, m=2, zero_curve, step_size = 0){
+price_bond <- function(coupon_rate, face_value, expiry_date, valuation_date, m=2, zero_curve, step_size = 0) {
 
   T2M <- interval(valuation_date,expiry_date) %>% 
     time_length("years") %>% 
@@ -126,8 +118,11 @@ price_bond <- function(coupon_rate, face_value, expiry_date, valuation_date, m=2
     # if (T2M %% 1/m != 0) { # Add the final principle payment at maturity
     #   schedule <- append(schedule, T2M)
     #}
+    
   } else { # If maturity is before the hypothetical first coupon payment
+    
     schedule <- T2M
+    
   }
   
   for (i in 1:length(schedule)) {
@@ -164,7 +159,6 @@ price_bond <- function(coupon_rate, face_value, expiry_date, valuation_date, m=2
     cfs <- append(cfs, cf)
     discount_factors <- append(discount_factors, discount_factor)
     pvs <- append(pvs, pv)
-    
   }
 
   table <- data.frame(times, cfs, discount_factors, pvs)
@@ -173,6 +167,7 @@ price_bond <- function(coupon_rate, face_value, expiry_date, valuation_date, m=2
   
   return(price)
 }
+
 #valuation_date <- max_date
 #expiry_date <- "2035-06-18"
 #coupon_rate <- 0.0357
@@ -198,6 +193,7 @@ calc_delta <- function(coupon_rate, face_value, expiry_date, valuation_date, m, 
   
   return(delta)
 }
+
 #max_date <- Sys.Date()
 #delta_test <- calc_delta(0.0357,100,"2035-06-18",max_date,2,zero_curve, 0.0001)
 
@@ -213,28 +209,24 @@ calc_gamma <- function(coupon_rate, face_value, expiry_date, valuation_date, m, 
 }
 
 #gamma_test <- calc_gamma(0.0357,100,"2035-06-18",max_date,2,zero_curve, 0.0001)
-
-
 #test_df2 <- data.frame(coupon_rate = 0.0357, face_value = 100, expiry = "2035-06-18", step_size = 0.0001, price = test, delta = delta_test, gamma = gamma_test)
-
 
 price_portfolio <- function(portfolio_df, valuation_date, zero_curve, step_size) {
   portfolio_df %>%
-    dplyr::rowwise() %>%
-    dplyr::mutate(
+    rowwise() %>%
+    mutate(
       price = price_bond(coupon_rate, face_value, expiry_date, valuation_date, m, zero_curve, step_size = 0),
       delta = calc_delta(coupon_rate, face_value, expiry_date, valuation_date, m, zero_curve, step_size),
       gamma = calc_gamma(coupon_rate, face_value, expiry_date, valuation_date, m, zero_curve, step_size))
 }
 
-
 shift_entire_curve <- function(zero_curve, bp_shift = 1) {
   zero_curve %>%
-    dplyr::mutate(zero_yields = zero_yields + bp_shift/10000)
+    mutate(zero_yields = zero_yields + bp_shift/10000)
 }
 
 #graph the Zero Rate over time for the specified time to maturity
-graph_zero_curve <- function(rate_data = rate_data, code, dateRange){
+graph_zero_curve <- function(rate_data = rate_data, code, dateRange) {
   zero_graph <- rate_data %>% 
     filter(symbol == code, date >= dateRange[1], date <= dateRange[2]) %>% 
     bootstrap_curve() %>% 
