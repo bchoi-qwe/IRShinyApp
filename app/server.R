@@ -1,10 +1,12 @@
 library(shiny)
+library(DT)
+library(dplyr)
 
 server <- function(input, output, session) {
 
 global_filters <- reactive({
   list(
-    portfolio = input$global_portfolio,
+    portfolio = input$global_book,
     date_range = input$global_dates
     )
 })
@@ -418,6 +420,62 @@ other_tab3_data <- reactive({
       other3 == b$input3,
       other4 == b$input4
     )
+})
+
+book_a_holdings <- reactiveVal(
+  data.frame(
+    BondName = character(),
+    stringsAsFactors = FALSE
+  )
+)
+
+observeEvent(input$insert_bonds_book_a, {
+  bond_name <- paste0(
+    input$bond_issuer_a,
+    input$bond_coupon_rate_a,
+    input$bond_maturity_date_a,
+    input$bond_type_a,
+    input$bond_currency_a
+  )
+  
+  book_a_holdings(
+    rbind(
+      book_a_holdings(),
+      data.frame(BondName = bond_name, stringsAsFactors = FALSE)
+    )
+  )
+})
+  
+book_b_holdings <- reactiveVal(
+  data.frame(
+    BondName = character(),
+    stringsAsFactors = FALSE
+  )
+)
+
+observeEvent(input$insert_bonds_book_b, {
+  bond_name <- paste0(
+    input$bond_issuer_b,
+    input$bond_coupon_rate_b,
+    input$bond_maturity_date_b,
+    input$bond_type_b,
+    input$bond_currency_b
+  )
+  
+  book_b_holdings(
+    rbind(
+      book_b_holdings(),
+      data.frame(BondName = bond_name, stringsAsFactors = FALSE)
+    )
+  )
+})
+
+output$bond_name_a <- renderDataTable ({
+  datatable(book_a_holdings())
+})
+  
+output$bond_name_b <- renderDataTable ({
+  datatable(book_b_holdings())
 })
 
 }
