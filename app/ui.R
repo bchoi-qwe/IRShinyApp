@@ -75,19 +75,7 @@ ui <- bs4DashPage(
                             width = 12,
                             solidHeader = TRUE,
                             status = "primary",
-                            height = NULL,
-                        bs4Card(
-                            title = "Bond Input | ISIN",
-                            width = 12,
-                            solidHeader = TRUE,
-                            status = "primary",
-                            fluidRow(
-                                column(3, div(title = "Issuer", textInput("bond_issuer_1", label = NULL, placeholder = "Issuer"))),
-                                column(2, div(title = "Coupon Rate", numericInput("bond_coupon_rate_1", label = NULL, value = NA, min = 0, step = 0.01))),
-                                column(3, div(title = "Maturity Date", dateInput("bond_maturity_date_1", label = NULL, value = NULL))),
-                                column(2, div(title = "Bond Type", selectInput("bond_type_1", label = NULL, choices = c("Government", "NA"), selected = "NA"))),
-                                column(2, div(title = "Bond Currency", selectInput("bond_currency_1", label = NULL, choices = c("USD", "NA"), selected = "NA"))))
-                            )
+                            height = "80vh"
                         )
                     ),
                     column(
@@ -97,7 +85,7 @@ ui <- bs4DashPage(
                             width = 12,
                             solidHeader = TRUE,
                             status = "primary",
-                            height = NULL,
+                            height = "80vh",
                         bs4Card(
                             title = "Bond Input | ISIN",
                             width = 12,
@@ -119,7 +107,7 @@ ui <- bs4DashPage(
                             width = 12,
                             solidHeader = TRUE,
                             status = "primary",
-                            height = NULL,
+                            height = "80vh",
                         bs4Card(
                             title = "Bond Input | ISIN",
                             width = 12,
@@ -132,6 +120,29 @@ ui <- bs4DashPage(
                                 column(2, div(title = "Bond Type", selectInput("bond_type_3", label = NULL, choices = c("Government", "NA"), selected = "NA"))),
                                 column(2, div(title = "Bond Currency", selectInput("bond_currency_3", label = NULL, choices = c("USD", "NA"), selected = "NA"))))
                             )
+                        )
+                    )
+                ),
+                fluidRow(
+                    column(
+                        width = 6
+                    ),
+                    column(
+                        width = 3,
+                        actionButton(
+                            "bonds_upload_book_a",
+                            "Upload CSV/Excel",
+                            icon = icon("upload"),
+                            class = "btn-sm"
+                        )
+                    ),
+                    column(
+                        width = 3,
+                        actionButton(
+                            "bonds_upload_book_b",
+                            "Upload CSV/Excel",
+                            icon = icon("upload"),
+                            class = "btn-sm"
                         )
                     )
                 )
