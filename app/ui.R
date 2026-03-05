@@ -7,38 +7,36 @@ ui <- bs4DashPage(
     title = "IR Management Portfolio Dashboard",
     help = NULL,
     dark = NULL,
+    fullscreen = FALSE,
     bs4DashNavbar(
         skin = "primary",
         status = "white",
         border = TRUE,
         controlbarIcon = NULL,
         
+        div(style = "width: 100%;",
         fluidRow(
-            div(style = "width: 50px; display: inline-block;"),
-            selectInput(
-                "global_portfolio",
-                label = "Portfolio",
+            column(1, tags$h5("Book")),
+            column(2, selectInput("global_book", 
+                label = NULL,
                 choices = c("All", "Book A", "Book B"),
                 selected = "All",
-                width = "150px",
+                width = "100%",
                 selectize = FALSE
-            ),
-            div(style = "width: 50px; display: inline-block;"),
-            dateRangeInput(
-                "global_dates",
-                label = "Date Range",
+            ),),
+            column(2, tags$h5(tagList(icon("calendar"), " Date Range"))),
+            column(3, dateRangeInput("global_dates", 
+                label = NULL,
                 start = Sys.Date() - 30,
                 end = Sys.Date(),
                 format = "yyyy-mm-dd",
-                width = "250px"
-            ),
-            div(style = "width: 50px; display: inline-block;"),
-            dateInput(
-                "valuation_date",
-                label = "Date",
+                width = "100%"
+            ),),
+            column(2, tags$h5(tagList("Valuation Date ", icon("calendar")))),
+            column(2, dateInput("valuation_date", label = NULL, 
                 value = NULL,
-                width = "150px"
-            )
+                width = "100%"
+            )))
         )
     ),
     
