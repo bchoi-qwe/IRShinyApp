@@ -1,33 +1,53 @@
 library(shiny)
 library(bs4Dash)
 library(DT)
-library(editbl)
+library(fresh)
 
 ui <- bs4DashPage(
+    title = "IR Management Portfolio Dashboard",
+    help = NULL,
+    dark = NULL,
     bs4DashNavbar(
-        bs4DashBrand(title = span(icon("wave-square"))),
+        skin = "primary",
+        status = "white",
+        border = TRUE,
+        controlbarIcon = NULL,
+        
         fluidRow(
+            div(style = "width: 50px; display: inline-block;"),
             selectInput(
                 "global_portfolio",
-                label = NULL,
-                choices = c("All", "Book A", "Book B", "Book C"),
-                selected = "All"
+                label = "Portfolio",
+                choices = c("All", "Book A", "Book B"),
+                selected = "All",
+                width = "150px",
+                selectize = FALSE
             ),
+            div(style = "width: 50px; display: inline-block;"),
             dateRangeInput(
                 "global_dates",
-                label = NULL,
+                label = "Date Range",
                 start = Sys.Date() - 30,
                 end = Sys.Date(),
-                format = "yyyy-mm-dd"
+                format = "yyyy-mm-dd",
+                width = "250px"
+            ),
+            div(style = "width: 50px; display: inline-block;"),
+            dateInput(
+                "valuation_date",
+                label = "Date",
+                value = NULL,
+                width = "150px"
             )
         )
     ),
     
     bs4DashSidebar(
-        minified = TRUE,
+        minified = FALSE,
         expandOnHover = FALSE,
         bs4SidebarMenu(
             id = "tabs",
+            bs4SidebarMenuItem("Bonds", tabName = "bonds", icon = icon("sliders")),
             bs4SidebarMenuItem("Home", tabName = "home", icon = icon("house")),
             bs4SidebarMenuItem("Rates", tabName = "rates", icon = icon("chart-line")),
             bs4SidebarMenuItem("Risk", tabName = "risk", icon = icon("calculator")),
@@ -48,6 +68,77 @@ ui <- bs4DashPage(
     bs4DashBody(
         bs4TabItems(
             bs4TabItem(
+                tabName = "bonds",
+                fluidRow(
+                    column(
+                        width = 4,
+                        bs4Card(
+                            title = "All",
+                            width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
+                            height = NULL,
+                        bs4Card(
+                            title = "Bond Input | ISIN",
+                            width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
+                            fluidRow(
+                                column(3, div(title = "Issuer", textInput("bond_issuer_1", label = NULL, placeholder = "Issuer"))),
+                                column(2, div(title = "Coupon Rate", numericInput("bond_coupon_rate_1", label = NULL, value = NA, min = 0, step = 0.01))),
+                                column(3, div(title = "Maturity Date", dateInput("bond_maturity_date_1", label = NULL, value = NULL))),
+                                column(2, div(title = "Bond Type", selectInput("bond_type_1", label = NULL, choices = c("Government", "NA"), selected = "NA"))),
+                                column(2, div(title = "Bond Currency", selectInput("bond_currency_1", label = NULL, choices = c("USD", "NA"), selected = "NA"))))
+                            )
+                        )
+                    ),
+                    column(
+                        width = 4,
+                        bs4Card(
+                            title = "Book A",
+                            width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
+                            height = NULL,
+                        bs4Card(
+                            title = "Bond Input | ISIN",
+                            width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
+                            fluidRow(
+                                column(3, div(title = "Issuer", textInput("bond_issuer_2", label = NULL, placeholder = "Issuer"))),
+                                column(2, div(title = "Coupon Rate", numericInput("bond_coupon_rate_2", label = NULL, value = NA, min = 0, step = 0.01))),
+                                column(3, div(title = "Maturity Date", dateInput("bond_maturity_date_2", label = NULL, value = NULL))),
+                                column(2, div(title = "Bond Type", selectInput("bond_type_2", label = NULL, choices = c("Government", "NA"), selected = "NA"))),
+                                column(2, div(title = "Bond Currency", selectInput("bond_currency_2", label = NULL, choices = c("USD", "NA"), selected = "NA"))))
+                            )
+                        )
+                    ),
+                    column(
+                        width = 4,
+                        bs4Card(
+                            title = "Book B",
+                            width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
+                            height = NULL,
+                        bs4Card(
+                            title = "Bond Input | ISIN",
+                            width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
+                            fluidRow(
+                                column(3, div(title = "Issuer", textInput("bond_issuer_3", label = NULL, placeholder = "Issuer"))),
+                                column(2, div(title = "Coupon Rate", numericInput("bond_coupon_rate_3", label = NULL, value = NA, min = 0, step = 0.01))),
+                                column(3, div(title = "Maturity Date", dateInput("bond_maturity_date_3", label = NULL, value = NULL))),
+                                column(2, div(title = "Bond Type", selectInput("bond_type_3", label = NULL, choices = c("Government", "NA"), selected = "NA"))),
+                                column(2, div(title = "Bond Currency", selectInput("bond_currency_3", label = NULL, choices = c("USD", "NA"), selected = "NA"))))
+                            )
+                        )
+                    )
+                )
+            ),
+            bs4TabItem(
                 tabName = "home",
                 bs4TabCard(
                     id = "home_subtabs",
@@ -63,6 +154,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "home_tab1_input1",
@@ -131,6 +224,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "home_tab2_input1",
@@ -171,6 +266,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "home_tab3_input1",
@@ -213,6 +310,8 @@ ui <- bs4DashPage(
                 bs4TabCard(
                     id = "rates_subtabs",
                     width = 12,
+                    solidHeader = TRUE,
+                    status = "primary",
                     
                     
                     
@@ -224,6 +323,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "rates_tab1_input1",
@@ -292,6 +393,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "rates_tab2_input1",
@@ -334,6 +437,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "rates_tab3_input1",
@@ -387,6 +492,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "risk_tab1_input1",
@@ -455,6 +562,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "risk_tab2_input1",
@@ -497,6 +606,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "risk_tab3_input1",
@@ -550,6 +661,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(
                                     3,
@@ -630,6 +743,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(
                                     3,
@@ -684,6 +799,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(
                                     3,
@@ -749,6 +866,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "pnl_tab1_input1",
@@ -817,6 +936,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "pnl_tab2_input1",
@@ -859,6 +980,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "pnl_tab3_input1",
@@ -911,6 +1034,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "other_tab1_input1",
@@ -979,6 +1104,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "other_tab2_input1",
@@ -1021,6 +1148,8 @@ ui <- bs4DashPage(
                         bs4Card(
                             title = "Inputs",
                             width = 12,
+                            solidHeader = TRUE,
+                            status = "primary",
                             fluidRow(
                                 column(3, selectInput(
                                     "other_tab3_input1",
