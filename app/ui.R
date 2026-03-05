@@ -16,7 +16,7 @@ ui <- bs4DashPage(
         
         div(style = "width: 100%;",
         fluidRow(
-            column(1, tags$h5("Book")),
+            column(1, div(align = "center", tags$h5("Book"))),
             column(2, selectInput("global_book", 
                 label = NULL,
                 choices = c("All", "Book A", "Book B"),
@@ -24,7 +24,7 @@ ui <- bs4DashPage(
                 width = "100%",
                 selectize = FALSE
             ),),
-            column(2, tags$h5(tagList(icon("calendar"), " Date Range"))),
+            column(2, div(align = "center", tags$h5(tagList(icon("calendar"), " Date Range")))),
             column(3, dateRangeInput("global_dates", 
                 label = NULL,
                 start = Sys.Date() - 30,
@@ -32,7 +32,7 @@ ui <- bs4DashPage(
                 format = "yyyy-mm-dd",
                 width = "100%"
             ),),
-            column(2, tags$h5(tagList("Valuation Date ", icon("calendar")))),
+            column(2, div(align = "center", tags$h5(tagList("Valuation Date ", icon("calendar"))))),
             column(2, dateInput("valuation_date", label = NULL, 
                 value = NULL,
                 width = "100%"
@@ -64,6 +64,17 @@ ui <- bs4DashPage(
     ),
     
     bs4DashBody(
+        tags$head(tags$style(HTML("
+        .content-wrapper .content { padding: 0 !important; }
+        .row { margin-left: 0 !important; margin-right: 0 !important; }
+        [class*='col-'] { padding-left: 0 !important; padding-right: 0 !important; }
+        .card { margin-bottom: 0 !important; }
+        .card-body { padding: 0 !important; }
+        .form-group { margin-bottom: 0.25rem !important; }
+                                  "))
+                  ),
+    
+        
         bs4TabItems(
             bs4TabItem(
                 tabName = "bonds",
@@ -71,7 +82,7 @@ ui <- bs4DashPage(
                     column(
                         width = 4,
                         bs4Card(
-                            title = "All",
+                            title = "All | ",
                             width = 12,
                             solidHeader = TRUE,
                             status = "primary",
@@ -81,46 +92,36 @@ ui <- bs4DashPage(
                     column(
                         width = 4,
                         bs4Card(
-                            title = "Book A",
+                            title = "Book A | ",
                             width = 12,
                             solidHeader = TRUE,
                             status = "primary",
                             height = "80vh",
-                        bs4Card(
-                            title = "Bond Input | ISIN",
-                            width = 12,
-                            solidHeader = TRUE,
-                            status = "primary",
                             fluidRow(
                                 column(3, div(title = "Issuer", textInput("bond_issuer_2", label = NULL, placeholder = "Issuer"))),
                                 column(2, div(title = "Coupon Rate", numericInput("bond_coupon_rate_2", label = NULL, value = NA, min = 0, step = 0.01))),
                                 column(3, div(title = "Maturity Date", dateInput("bond_maturity_date_2", label = NULL, value = NULL))),
-                                column(2, div(title = "Bond Type", selectInput("bond_type_2", label = NULL, choices = c("Government", "NA"), selected = "NA"))),
+                                column(2, div(title = "Bond Type", selectInput("bond_type_2", label = NULL, choices = c("GOVT", "NA"), selected = "NA"))),
                                 column(2, div(title = "Bond Currency", selectInput("bond_currency_2", label = NULL, choices = c("USD", "NA"), selected = "NA"))))
                             )
-                        )
+                        
                     ),
                     column(
                         width = 4,
                         bs4Card(
-                            title = "Book B",
+                            title = "Book B | ",
                             width = 12,
                             solidHeader = TRUE,
                             status = "primary",
                             height = "80vh",
-                        bs4Card(
-                            title = "Bond Input | ISIN",
-                            width = 12,
-                            solidHeader = TRUE,
-                            status = "primary",
                             fluidRow(
                                 column(3, div(title = "Issuer", textInput("bond_issuer_3", label = NULL, placeholder = "Issuer"))),
                                 column(2, div(title = "Coupon Rate", numericInput("bond_coupon_rate_3", label = NULL, value = NA, min = 0, step = 0.01))),
                                 column(3, div(title = "Maturity Date", dateInput("bond_maturity_date_3", label = NULL, value = NULL))),
-                                column(2, div(title = "Bond Type", selectInput("bond_type_3", label = NULL, choices = c("Government", "NA"), selected = "NA"))),
+                                column(2, div(title = "Bond Type", selectInput("bond_type_3", label = NULL, choices = c("GOVT", "NA"), selected = "NA"))),
                                 column(2, div(title = "Bond Currency", selectInput("bond_currency_3", label = NULL, choices = c("USD", "NA"), selected = "NA"))))
                             )
-                        )
+                        
                     )
                 ),
                 fluidRow(
