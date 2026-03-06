@@ -7,7 +7,8 @@ server <- function(input, output, session) {
 global_filters <- reactive({
   list(
     portfolio = input$global_book,
-    date_range = input$global_dates
+    date_range = input$global_dates,
+    val_date = input$valuation_date
     )
 })
 
@@ -26,18 +27,18 @@ portfolio_base <- reactive({
   }
 })
 
-home_tab2_filters <- reactive({
+home_tab1_filters <- reactive({
   list(
-    input1 = input$home_tab2_input1,
-    input2 = input$home_tab2_input2,
-    input3 = input$home_tab2_input3,
-    input4 = input$home_tab2_input4
+    input1 = input$home_tab1_input1,
+    input2 = input$home_tab1_input2,
+    input3 = input$home_tab1_input3,
+    input4 = input$home_tab1_input4
   )
 })
 
-home_tab2_data <- reactive({
+home_tab1_data <- reactive({
   a <- global_filters()
-  b <- home_tab2_filters()
+  b <- home_tab1_filters()
   
   portfolio_base() %>% 
     filter(
@@ -424,48 +425,62 @@ other_tab3_data <- reactive({
 
 book_a_holdings <- reactiveVal(
   data.frame(
-    BondName = character(),
+    Name = character(),
+    Rate = numeric(),
+    MDate = as.Date(character()),
+    FV = numeric(),
+    Frequency = numeric(),
+    VDate = as.Date(character()),
     stringsAsFactors = FALSE
   )
 )
 
 observeEvent(input$insert_bonds_book_a, {
-  bond_name <- paste0(
-    input$bond_issuer_a,
-    input$bond_coupon_rate_a,
-    input$bond_maturity_date_a,
-    input$bond_type_a,
-    input$bond_currency_a
-  )
-  
+  new_row <- data.frame(
+    Name = as.character(input$bond_issuer_a),
+    Rate = as.numeric(input$bond_coupon_rate_a),
+    MDate = as.Date(input$bond_maturity_date_a),
+    FV = as.numeric(input$face_value_a),
+    Frequency = as.numeric(input$frequency_a),
+    VDate = as.Date(input$valuation_date),
+    stringsAsFactors = FALSE
+    )
+
   book_a_holdings(
     rbind(
       book_a_holdings(),
-      data.frame(BondName = bond_name, stringsAsFactors = FALSE)
+      new_row
     )
   )
 })
   
 book_b_holdings <- reactiveVal(
   data.frame(
-    BondName = character(),
+    Name = character(),
+    Rate = numeric(),
+    MDate = as.Date(character()),
+    FV = numeric(),
+    Frequency = numeric(),
+    VDate = as.Date(character()),
     stringsAsFactors = FALSE
   )
 )
 
 observeEvent(input$insert_bonds_book_b, {
-  bond_name <- paste0(
-    input$bond_issuer_b,
-    input$bond_coupon_rate_b,
-    input$bond_maturity_date_b,
-    input$bond_type_b,
-    input$bond_currency_b
+  new_row <- data.frame(
+    Name = as.character(input$bond_issuer_b),
+    Rate = as.numeric(input$bond_coupon_rate_b),
+    MDate = as.Date(input$bond_maturity_date_b),
+    FV = as.numeric(input$face_value_b),
+    Frequency = as.numeric(input$frequency_b),
+    VDate = as.Date(input$valuation_date),
+    stringsAsFactors = FALSE
   )
   
   book_b_holdings(
     rbind(
       book_b_holdings(),
-      data.frame(BondName = bond_name, stringsAsFactors = FALSE)
+      new_row
     )
   )
 })

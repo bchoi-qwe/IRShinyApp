@@ -98,11 +98,11 @@ ui <- bs4DashPage(
                             status = "primary",
                             height = "80vh",
                             fluidRow(
-                                column(3, div(title = "Issuer", textInput("bond_issuer_a", label = NULL, placeholder = "Issuer"))),
+                                column(3, div(title = "Name", textInput("bond_issuer_a", label = NULL, placeholder = "Name"))),
                                 column(2, div(title = "Coupon Rate", numericInput("bond_coupon_rate_a", label = NULL, value = NA, min = 0, step = 0.01))),
                                 column(3, div(title = "Maturity Date", dateInput("bond_maturity_date_a", label = NULL, value = NULL))),
-                                column(2, div(title = "Bond Type", selectInput("bond_type_a", label = NULL, choices = c("GOVT", "NA"), selected = "NA"))),
-                                column(2, div(title = "Bond Currency", selectInput("bond_currency_a", label = NULL, choices = c("USD", "NA"), selected = "NA")))),
+                                column(2, div(title = "Face Value", numericInput("face_value_a", label = NULL, value = NA, min = 0, step = 0.01))),
+                                column(2, div(title = "Frequency", selectInput("frequency_a", label = NULL, choices = c("1", "2"), selected = "1")))),
                             div(style = "height: 12px;"),
                         bs4Card(
                             title = "Book A | Holdings",
@@ -122,11 +122,11 @@ ui <- bs4DashPage(
                             status = "primary",
                             height = "80vh",
                             fluidRow(
-                                column(3, div(title = "Issuer", textInput("bond_issuer_b", label = NULL, placeholder = "Issuer"))),
+                                column(3, div(title = "Name", textInput("bond_issuer_b", label = NULL, placeholder = "Name"))),
                                 column(2, div(title = "Coupon Rate", numericInput("bond_coupon_rate_b", label = NULL, value = NA, min = 0, step = 0.01))),
                                 column(3, div(title = "Maturity Date", dateInput("bond_maturity_date_b", label = NULL, value = NULL))),
-                                column(2, div(title = "Bond Type", selectInput("bond_type_b", label = NULL, choices = c("GOVT", "NA"), selected = "NA"))),
-                                column(2, div(title = "Bond Currency", selectInput("bond_currency_b", label = NULL, choices = c("USD", "NA"), selected = "NA")))),
+                                column(2, div(title = "Face Value", numericInput("face_value_b", label = NULL, value = NA, min = 0, step = 0.01))),
+                                column(2, div(title = "Frequency", selectInput("frequency_b", label = NULL, choices = c("1", "2"), selected = "1")))),
                             div(style = "height: 12px;"),
                         bs4Card(
                             title = "Book B | Holdings",
