@@ -2,8 +2,7 @@ FROM rocker/shiny-verse:4.5.2
 
 RUN apt-get clean all && \
     apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y git \
+    apt-get install -y git 
 
 RUN git clone https://github.com/bchoi-qwe/IRShinyApp.git /srv/shiny-server/IRShinyApp
 RUN Rscript /srv/shiny-server/IRShinyApp/requirements.R
