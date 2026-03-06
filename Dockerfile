@@ -9,4 +9,4 @@ RUN Rscript /srv/shiny-server/IRShinyApp/requirements.R
 
 EXPOSE 3838
 
-CMD ["R", "-e", "shiny::runApp('/srv/shiny-server/IRShinyApp/', host = '0.0.0.0', port = 3838)"]
+CMD ["R", "-e", "shiny::runApp('/srv/shiny-server/IRShinyApp/app', host = '0.0.0.0', port = 3838)"]
