@@ -1,18 +1,13 @@
-FROM rocker/rstudio:latest
+FROM rocker/shiny-verse:4.5.2
 
-RUN apt-get update && apt-get install -y \
-    libssl-dev \
-    libcurl4-gnutls-dev \
-    libxml2-dev
+RUN apt-get clean all && \
+    apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git \
 
-RUN R -e "install.packages(c('tidyquant', 'plotly'), dependencies = TRUE, repos = 'https://packagemanager.rstudio.com/cran/latest')"
+RUN git clone https://github.com/bchoi-qwe/IRShinyApp.git /srv/shiny-server/IRShinyApp
+RUN Rscript /srv/shiny-server/IRShinyApp/requirements.R
 
-RUN useradd rstudio
-RUN echo "rstudio:rstudio" | chpasswd
+EXPOSE 3838
 
-RUN mkdir /home/rstudio
-RUN chown rstudio:rstudio /home/rstudio
-
-EXPOSE 8787
-
-CMD ["/init"]
+CMD ["R", "-e", "shiny::runApp('/srv/shiny-server/IRShinyApp/', host = '0.0.0.0', port = 3838)"]
